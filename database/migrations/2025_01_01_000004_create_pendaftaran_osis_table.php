@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('pendaftaran_osis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('siswa_id')->constrained('siswa');
-            $table->string('pilihan_bidang');
-            $table->text('motivasi');
+            $table->foreignId('siswa_id')->constrained('siswa')->unique();
+            $table->enum('pilihan_bidang', ['kepemimpinan', 'keagamaan', 'olahraga', 'seni']);
+            $table->text('motivasi')->min(20)->max(300);
             $table->timestamps();
         });
     }
